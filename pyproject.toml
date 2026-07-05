@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kinyarwanda-w2v-asr"
+version = "0.1.0"
+description = "Kinyarwanda ASR with Wav2Vec2-BERT (badrex/w2v-bert-2.0-kinyarwanda-asr-1000h)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.1.0",
+    "transformers>=4.40.0",
+    "librosa>=0.10.0",
+    "soundfile>=0.12.0",
+    "sounddevice>=0.4.6",
+    "matplotlib>=3.8.0",
+    "rapidfuzz>=3.6.0",
+    "numpy>=1.24.0",
+    "fastapi",
+    "uvicorn",
+    "python-multipart",
+]
+
+[project.scripts]
+kin-w2v-transcribe = "kinyarwanda_w2v_asr.cli.transcribe:main"
+kin-w2v-test = "kinyarwanda_w2v_asr.cli.live_test:main"
+kin-w2v-api = "kinyarwanda_w2v_asr.cli.api_server:main"
+kin-w2v-speak = "kinyarwanda_w2v_asr.cli.speak:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

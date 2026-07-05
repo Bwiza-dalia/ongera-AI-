@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ongera-asr-api
+    runtime: python
+    plan: standard
+    buildCommand: pip install -r requirements.txt && pip install -e .
+    startCommand: uvicorn kinyarwanda_w2v_asr.api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: KIN_W2V_DEVICE
+        value: cpu
+      - key: PYTHON_VERSION
+        value: "3.11"
+    healthCheckPath: /health
